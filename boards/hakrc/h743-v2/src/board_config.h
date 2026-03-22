@@ -114,10 +114,10 @@
 
 /* USB OTG FS
  *
- * PA8  OTG_FS_VBUS VBUS sensing
+ * PA9  OTG_FS_VBUS VBUS sensing (HAKRC may not have this connected, disabling in defconfig)
  */
 
-#define GPIO_OTGFS_VBUS         /* PA8 */ (GPIO_INPUT|GPIO_PULLDOWN|GPIO_SPEED_100MHz|GPIO_PORTA|GPIO_PIN8)
+#define GPIO_OTGFS_VBUS         /* PA9 */ (GPIO_INPUT|GPIO_FLOAT|GPIO_SPEED_100MHz|GPIO_PORTA|GPIO_PIN9)
 
 
 /* High-resolution timer */
