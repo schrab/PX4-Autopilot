@@ -38,15 +38,12 @@
 constexpr px4_spi_bus_t px4_spi_buses[SPI_BUS_MAX_BUS_ITEMS] = {
 	initSPIBus(SPI::Bus::SPI1, {
 		initSPIDevice(DRV_IMU_DEVTYPE_ICM42688P, SPI::CS{GPIO::PortC, GPIO::Pin15}, SPI::DRDY{GPIO::PortB, GPIO::Pin2}),
-		initSPIDevice(DRV_IMU_DEVTYPE_ICM42688P, SPI::CS{GPIO::PortC, GPIO::Pin13}, SPI::DRDY{GPIO::PortC, GPIO::Pin14}),
 	}),
 	initSPIBus(SPI::Bus::SPI3, {
 		initSPIDevice(DRV_OSD_DEVTYPE_ATXXXX, SPI::CS{GPIO::PortE, GPIO::Pin2}),
-		initSPIDevice(DRV_IMU_DEVTYPE_ICM42688P, SPI::CS{GPIO::PortC, GPIO::Pin13}, SPI::DRDY{GPIO::PortC, GPIO::Pin14}),
 	}),
 	initSPIBus(SPI::Bus::SPI4, {
-		initSPIDevice(DRV_IMU_DEVTYPE_ICM42688P, SPI::CS{GPIO::PortC, GPIO::Pin13}, SPI::DRDY{GPIO::PortC, GPIO::Pin14}),
-		initSPIDevice(DRV_OSD_DEVTYPE_ATXXXX, SPI::CS{GPIO::PortE, GPIO::Pin2}),
+		initSPIDevice(DRV_IMU_DEVTYPE_ICM42688P, SPI::CS{GPIO::PortC, GPIO::Pin13}), /* IMU2 - polling mode (PC14 is backup domain) */
 	}),
 };
 

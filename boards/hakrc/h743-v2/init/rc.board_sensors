@@ -5,15 +5,16 @@
 
 board_adc start
 
-# # Internal SPI bus BMI088 accel/gyro
-bmi088 -s -b 2 -A -R 6 start
-bmi088 -s -b 2 -G -R 6 start
+# Internal SPI bus ICM42688P accel/gyro - Gyro 1 on SPI1, CS=PC15
+icm42688p start -s -b 1 -R 6
 
-# # Internal SPI bus BMI270 accel/gyro
-bmi270 -s -b 3 -R 0 start
+# Internal SPI bus ICM42688P accel/gyro - Gyro 2 on SPI4, CS=PC13
+icm42688p start -s -b 4 -R 6
 
-# Internal baro
-spl06 -I -a 0x77 start
+# Internal baro on I2C1 at 0x76
+spa06 start -X -b 1 -a 0x76
 
-# External mag
-qmc5883l -I -a 0x0D -R 4 start
+# OSD on SPI3
+atxxxx start -s -b 3
+
+# No external mag by default - if you have one, add it here.

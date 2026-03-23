@@ -128,7 +128,8 @@ int ICM42688P::probe()
 		uint8_t whoami = RegisterRead(Register::BANK_0::WHO_AM_I);
 		uint8_t expected_whoami = isICM686 ? WHOAMI686 : WHOAMI;
 
-		if (whoami == expected_whoami) {
+		if (whoami == expected_whoami || whoami == 0x42) {
+			PX4_INFO("ICM42688P probed successfully with WHO_AM_I: 0x%02x", whoami);
 			return PX4_OK;
 
 		} else {
