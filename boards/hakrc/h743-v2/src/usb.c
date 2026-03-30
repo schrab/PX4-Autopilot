@@ -57,7 +57,7 @@ __EXPORT void stm32_usbinitialize(void)
 
 	/* Configure the OTG FS VBUS sensing GPIO, Power On, and Overcurrent GPIOs */
 
-#ifdef CONFIG_STM32H7_OTGFS
+#ifdef GPIO_OTGFS_VBUS
 	stm32_configgpio(GPIO_OTGFS_VBUS);
 #endif
 }
@@ -75,4 +75,9 @@ __EXPORT void stm32_usbinitialize(void)
 __EXPORT void stm32_usbsuspend(FAR struct usbdev_s *dev, bool resume)
 {
 	uinfo("resume: %d\n", resume);
+}
+
+__EXPORT int board_read_VBUS_state(void)
+{
+	return 0; // 0 = connected
 }

@@ -14,6 +14,14 @@ icm42688p start -s -b 4 -R 6
 # Internal baro on I2C1 at 0x76
 spa06 start -X -b 1 -a 0x76
 
+# Battery Status - monitors PC0 (Voltage) and PC1 (Current)
+battery_status start
+
+# ESC Telemetry on UART1 (/dev/ttyS4) - for AM32 voltage/current (RX1 pad)
+# DShot driver handles the serial telemetry stream; esc_battery converts it to battery_status.
+dshot telemetry -d /dev/ttyS4
+esc_battery start
+
 # OSD on SPI3
 atxxxx start -s -b 3
 

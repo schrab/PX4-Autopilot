@@ -73,7 +73,6 @@
  */
 
 /* ADC defines to be used in sensors.cpp to read from a particular channel */
-#define SYSTEM_ADC_BASE STM32_ADC1_BASE
 #define ADC1_CH(n)                  (n)
 
 /* Define GPIO pins used as ADC N.B. Channel numbers must match below  */
@@ -97,9 +96,10 @@
 /* Define Battery 1 Voltage Divider and A per V
  */
 
-// #define BOARD_BATTERY1_V_DIV         (11.0f)     /* measured with the provided PM board */
-// #define BOARD_BATTERY1_A_PER_V       (40.0f)
-// #define BOARD_BATTERY2_V_DIV         (11.0f)     /* measured with the provided PM board */
+#define BOARD_BATTERY1_V_DIV         (18.5f)     /* Refined based on Build #38 results */
+#define BOARD_BATTERY1_A_PER_V       (38.0f)     /* Standard for many AIO ESCs */
+
+#define BOARD_ADC_OPEN_CIRCUIT_V     (5.6f)
 
 
 /* PWM
@@ -113,11 +113,10 @@
 #define GPIO_TONE_ALARM_GPIO    /* PE9  */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN9)
 
 /* USB OTG FS
- *
- * PA9  OTG_FS_VBUS VBUS sensing (HAKRC may not have this connected, disabling in defconfig)
  */
 
-#define GPIO_OTGFS_VBUS         /* PA9 */ (GPIO_INPUT|GPIO_FLOAT|GPIO_SPEED_100MHz|GPIO_PORTA|GPIO_PIN9)
+// PA9 is UART1_TX, PA10 is RX1 (ESC Telemetry).
+// Hardware VBUS sensing is disabled in the chip-level driver (defconfig).
 
 
 #define GPIO_SPI1_CS_IMU1      /* PC15 */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN15)
